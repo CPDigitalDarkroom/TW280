@@ -1,12 +1,15 @@
-include theos/makefiles/common.mk
+TARGET = :clang:latest:7.0
+ARCHS = armv7 arm64
 
-TWEAK_NAME = tw280
-tw280_FILES = /mnt/d/codes/tw280/Tweak.xm
-tw280_FRAMEWORKS = CydiaSubstrate Foundation
-tw280_CFLAGS = -fobjc-arc
-tw280_LDFLAGS = -Wl,-segalign,4000
+include $(THEOS)/makefiles/common.mk
 
-tw280_ARCHS = armv7 arm64
-export ARCHS = armv7 arm64
+TWEAK_NAME = TW280
+TW280_FILES = Tweak.xm
+TW280_FRAMEWORKS = Foundation
+TW280_CFLAGS = -fobjc-arc
+TW280_USE_SUBSTRATE = 0
 
 include $(THEOS_MAKE_PATH)/tweak.mk
+
+before-stage::
+	find . -name ".DS_Store" -delete
